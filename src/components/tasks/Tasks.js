@@ -1,17 +1,22 @@
-import Task from './Task'
+import Task from "./Task";
 
-const Tasks = ({ tasks, onDelete }) => {
+const Tasks = ({ tasks, onDelete, onToggle }) => {
   return (
     <div>
       {tasks.map((task) => (
-        <Task task={task} onDelete={onDelete} key={task.id} />
+        <Task
+          task={task}
+          onDelete={onDelete}
+          onToggle={onToggle}
+          key={task.id}
+        />
       ))}
     </div>
   );
 };
 
 Tasks.defaultProps = {
-    tasks: []
-}
+  tasks: [],
+};
 
 export default Tasks;
