@@ -29,10 +29,15 @@ const App = () => {
 
   // Create a task
   const taskCreate = (task) => {
-    const ids = tasks.map((task) => task.id);
-    const id = ids.reduce((a, b) => Math.max(a, b));
-    const newTask = {...task, id: id + 1}
-    setTasks([...tasks, newTask])
+    // const ids = tasks.map((task) => task.id);
+    // let id = ids.reduce((a, b) => Math.max(a, b)); // works only if the array is not empty
+    // console.log(id);
+    // if (id === 0) {
+    //   id = 1;
+    // }
+    const id = Math.random() * 1000 + 1;
+    const newTask = { ...task, id: id + 1 };
+    setTasks([...tasks, newTask]);
   };
 
   const deleteTask = (id) => {
