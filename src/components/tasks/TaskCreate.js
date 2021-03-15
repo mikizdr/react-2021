@@ -14,6 +14,26 @@ const TaskCreate = ({ taskCreate }) => {
     setReminder(false);
   };
 
+  const handleChange = ({ target, currentTarget }) => {
+    console.log(target.name);
+    switch (target.name) {
+      case "name":
+        setName(target.value);
+        break;
+
+      case "day":
+        setDay(target.value);
+        break;
+
+      case "reminder":
+        setReminder(currentTarget.checked);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <form className="add-from" onSubmit={onSubmit}>
       <div className="form-control">
@@ -23,7 +43,7 @@ const TaskCreate = ({ taskCreate }) => {
           type="text"
           placeholder="Add Task"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleChange}
         />
       </div>
       <div className="form-control">
@@ -33,7 +53,7 @@ const TaskCreate = ({ taskCreate }) => {
           type="text"
           placeholder="Add Day & Time"
           value={day}
-          onChange={(e) => setDay(e.target.value)}
+          onChange={handleChange}
         />
       </div>
       <div className="form-control form-control-check">
@@ -43,7 +63,7 @@ const TaskCreate = ({ taskCreate }) => {
           checked={reminder}
           type="checkbox"
           value={reminder}
-          onChange={(e) => setReminder(e.currentTarget.checked)}
+          onChange={handleChange}
         />
       </div>
       <input type="submit" value="Save Task" className="btn btn-block" />
