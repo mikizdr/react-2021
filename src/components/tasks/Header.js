@@ -2,13 +2,11 @@ import PropTypes from "prop-types";
 
 import Button from "./reusable/Button";
 
-const Header = ({ title }) => {
-  const onClick = () => console.log("button is clicked");
-
+const Header = ({ title, onCreateTask }) => {
   return (
     <header className="header">
       <h1>{title}</h1>
-      <Button onClick={onClick} />
+      <Button onClick={onCreateTask} />
     </header>
   );
 };

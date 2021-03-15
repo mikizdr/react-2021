@@ -27,6 +27,8 @@ const App = () => {
     },
   ]);
 
+  const [showForm, setShowForm] = useState(false);
+
   // Create a task
   const taskCreate = (task) => {
     // const ids = tasks.map((task) => task.id);
@@ -54,10 +56,14 @@ const App = () => {
     );
   };
 
+  const onCreateTask = () => {
+    setShowForm(!showForm)
+  }
+
   return (
     <div className="container">
-      <Header title="Task Tracker" />
-      <TaskCreate taskCreate={taskCreate} />
+      <Header title="Task Tracker" onCreateTask={onCreateTask} />
+      {showForm && <TaskCreate taskCreate={taskCreate} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
