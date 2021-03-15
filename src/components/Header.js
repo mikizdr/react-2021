@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const Header = ({ title }) => {
   return (
@@ -13,7 +13,14 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-    title: PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+};
+
+// CSS in React JS
+// const headeStyle = {
+//   color: "black",
+//   backgroundColor: "darkorange",
+//   padding: "10px",
+// };
 
 export default Header;
