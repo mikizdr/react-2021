@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Header from "./components/tasks/Header";
 import Tasks from "./components/tasks/Tasks";
+import TaskCreate from "./components/tasks/TaskCreate";
 
 // Function component
 const App = () => {
@@ -26,13 +27,21 @@ const App = () => {
     },
   ]);
 
+  // Create a task
+  const taskCreate = (task) => {
+    const ids = tasks.map((task) => task.id);
+    const id = ids.reduce((a, b) => Math.max(a, b));
+    const newTask = {...task, id: id + 1}
+    setTasks([...tasks, newTask])
+  };
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
   // Toggle reminder
   const toggleReminder = (id) => {
-    console.log(id)
+    console.log(id);
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, remider: !task.remider } : task
@@ -43,6 +52,7 @@ const App = () => {
   return (
     <div className="container">
       <Header title="Task Tracker" />
+      <TaskCreate taskCreate={taskCreate} />
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
