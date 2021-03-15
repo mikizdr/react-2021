@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const TaskCreate = ({ taskCreate }) => {
+  const nameInputRef = useRef();
   const [name, setName] = useState("");
   const [day, setDay] = useState("");
   const [reminder, setReminder] = useState(false);
 
+  useEffect(() => {
+    if (!nameInputRef.current) {
+      return;
+    }
+    nameInputRef.current.focus();
+  }, []);
+
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (!name) {
+      alert("Enter the name for the task.");
+      return;
+    }
 
     taskCreate({ name, day, reminder });
     setName("");
@@ -15,7 +28,6 @@ const TaskCreate = ({ taskCreate }) => {
   };
 
   const handleChange = ({ target, currentTarget }) => {
-    console.log(target.name);
     switch (target.name) {
       case "name":
         setName(target.value);
@@ -39,6 +51,7 @@ const TaskCreate = ({ taskCreate }) => {
       <div className="form-control">
         <label>Task</label>
         <input
+          ref={nameInputRef}
           name="name"
           type="text"
           placeholder="Add Task"
