@@ -13,12 +13,6 @@
       "remider": true
     },
     {
-      "id": 3,
-      "name": "Food Shopping",
-      "day": "Feb 5th at 2:30pm",
-      "remider": false
-    },
-    {
       "id": 4,
       "name": "Go to PIO to fix some things",
       "day": "Mar 16th at 5:30pm",
