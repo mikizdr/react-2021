@@ -2,11 +2,15 @@ import PropTypes from "prop-types";
 
 import Button from "./reusable/Button";
 
-const Header = ({ title, onCreateTask }) => {
+const Header = ({ title, onCreateTask, showForm }) => {
   return (
     <header className="header">
       <h1>{title}</h1>
-      <Button onClick={onCreateTask} />
+      <Button
+        onClick={onCreateTask}
+        color={showForm ? "red" : "green"}
+        text={showForm ? "Close" : "Add"}
+      />
     </header>
   );
 };
