@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
     <div>
       <h4>React version: {React.version}</h4>
-      <a href="/">Back</a>
+      <Link to="/">Back</Link>
     </div>
   );
 };
