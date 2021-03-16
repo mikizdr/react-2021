@@ -1,9 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import Tasks from "./components/tasks/Tasks";
 import TaskCreate from "./components/tasks/TaskCreate";
+import About from "./pages/About";
 
 // Function component
 const App = () => {
@@ -94,23 +97,48 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h4>React version: {React.version}</h4>
-      <hr />
-      <Header
-        title="Task Tracker"
-        onCreateTask={onCreateTask}
-        showForm={showForm}
-      />
-      {showForm && (
-        <TaskCreate taskCreate={taskCreate} onCreateTask={onCreateTask} />
-      )}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        "No Tasks To Show"
-      )}
-    </div>
+    <Router>
+      <div className="container">
+        <h4>React version: {React.version}</h4>
+        <hr />
+        <Header
+          title="Task Tracker"
+          onCreateTask={onCreateTask}
+          showForm={showForm}
+        />
+        <br />
+        {/* <Route path='/' exact render={(props) => ( */}
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <>
+              {showForm && (
+                <TaskCreate
+                  taskCreate={taskCreate}
+                  onCreateTask={onCreateTask}
+                />
+              )}
+
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                "No Tasks To Show"
+              )}
+            </>
+          )}
+        />
+
+        <br />
+
+        <Route path="/about" component={About} />
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

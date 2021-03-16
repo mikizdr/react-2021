@@ -1,16 +1,16 @@
 {
   "tasks": [
     {
-      "name": "test",
-      "day": "test",
-      "reminder": false,
-      "id": 1
+      "name": "Ана Здравковић",
+      "day": "17-09-2019",
+      "reminder": true,
+      "id": 4
     },
     {
-      "name": "Леа",
-      "day": "test",
-      "reminder": false,
-      "id": 2
+      "name": "Леа Здравковић",
+      "day": "23-03-2007",
+      "reminder": true,
+      "id": 5
     }
   ]
 }
