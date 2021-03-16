@@ -6,6 +6,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Tasks from "./components/tasks/Tasks";
 import TaskCreate from "./components/tasks/TaskCreate";
+import Posts from "./pages/Posts";
 import About from "./pages/About";
 
 // Function component
@@ -135,6 +136,7 @@ const App = () => {
 
         <br />
 
+        <Route path="/posts" component={Posts} />
         <Route path="/about" component={About} />
         <Footer />
       </div>
