@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 import Header from "./components/tasks/Header";
@@ -6,26 +7,7 @@ import TaskCreate from "./components/tasks/TaskCreate";
 
 // Function component
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      name: "Doctor Appoitment",
-      day: "Feb 5th at 2:30pm",
-      remider: true,
-    },
-    {
-      id: 2,
-      name: "Meeting at school",
-      day: "Feb 5th at 1:30pm",
-      remider: true,
-    },
-    {
-      id: 3,
-      name: "Food Shopping",
-      day: "Feb 5th at 2:30pm",
-      remider: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const [showForm, setShowForm] = useState(false);
 
@@ -57,12 +39,18 @@ const App = () => {
   };
 
   const onCreateTask = () => {
-    setShowForm(!showForm)
-  }
+    setShowForm(!showForm);
+  };
 
   return (
     <div className="container">
-      <Header title="Task Tracker" onCreateTask={onCreateTask} showForm={showForm} />
+      <h4>React version: {React.version}</h4>
+      <hr/>
+      <Header
+        title="Task Tracker"
+        onCreateTask={onCreateTask}
+        showForm={showForm}
+      />
       {showForm && <TaskCreate taskCreate={taskCreate} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
