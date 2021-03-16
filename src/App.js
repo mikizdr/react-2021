@@ -85,7 +85,7 @@ const App = () => {
         onCreateTask={onCreateTask}
         showForm={showForm}
       />
-      {showForm && <TaskCreate taskCreate={taskCreate} />}
+      {showForm && <TaskCreate taskCreate={taskCreate} onCreateTask={onCreateTask} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const TaskCreate = ({ taskCreate }) => {
+const TaskCreate = ({ taskCreate, onCreateTask }) => {
   const nameInputRef = useRef();
   const [name, setName] = useState("");
   const [day, setDay] = useState("");
@@ -25,6 +25,8 @@ const TaskCreate = ({ taskCreate }) => {
     setName("");
     setDay("");
     setReminder(false);
+
+    onCreateTask() // Hide form for creating a task
   };
 
   const handleChange = ({ target, currentTarget }) => {
