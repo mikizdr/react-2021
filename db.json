@@ -3,20 +3,14 @@
     {
       "name": "test",
       "day": "test",
-      "reminder": true,
+      "reminder": false,
       "id": 1
     },
     {
-      "name": "test",
+      "name": "Леа",
       "day": "test",
       "reminder": false,
       "id": 2
-    },
-    {
-      "name": "rentals",
-      "day": "sdfsdfs",
-      "reminder": true,
-      "id": 3
     }
   ]
 }

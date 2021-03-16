@@ -7,7 +7,7 @@ import TaskCreate from "./components/tasks/TaskCreate";
 
 // Function component
 const App = () => {
-  const URL = 'http://localhost:5000/tasks'
+  const URL = "http://localhost:5000/tasks";
 
   const [tasks, setTasks] = useState([]);
 
@@ -25,6 +25,13 @@ const App = () => {
   // Fetch tasks
   const fetchTasks = async () => {
     const response = await fetch(`${URL}`);
+    const data = await response.json();
+    return data;
+  };
+
+  // Fetch a single tasks
+  const fetchTask = async (id) => {
+    const response = await fetch(`${URL}/${id}`);
     const data = await response.json();
     return data;
   };
@@ -63,11 +70,21 @@ const App = () => {
   };
 
   // Toggle reminder
-  const toggleReminder = (id) => {
-    console.log(id);
+  const toggleReminder = async (id) => {
+    const ime = await fetchTask(id);
+
+    const response = await fetch(`${URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...ime, reminder: !ime.reminder }),
+    });
+    const updatedTask = await response.json();
+
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, remnider: !task.remnider } : task
+        task.id === id ? { ...task, reminder: updatedTask.reminder } : task
       )
     );
   };
@@ -85,7 +102,9 @@ const App = () => {
         onCreateTask={onCreateTask}
         showForm={showForm}
       />
-      {showForm && <TaskCreate taskCreate={taskCreate} onCreateTask={onCreateTask} />}
+      {showForm && (
+        <TaskCreate taskCreate={taskCreate} onCreateTask={onCreateTask} />
+      )}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
