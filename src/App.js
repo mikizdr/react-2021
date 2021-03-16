@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/tasks/Header";
 import Tasks from "./components/tasks/Tasks";
@@ -10,6 +10,22 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
 
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    const getTasksFromServer = async () => {
+      const tasks = await fetchTasks();
+      setTasks(tasks);
+    };
+
+    getTasksFromServer();
+  }, []);
+
+  // Fetch tasks
+  const fetchTasks = async () => {
+    const response = await fetch("http://localhost:5000/tasks");
+    const data = await response.json();
+    return data;
+  };
 
   // Create a task
   const taskCreate = (task) => {
@@ -45,7 +61,7 @@ const App = () => {
   return (
     <div className="container">
       <h4>React version: {React.version}</h4>
-      <hr/>
+      <hr />
       <Header
         title="Task Tracker"
         onCreateTask={onCreateTask}
