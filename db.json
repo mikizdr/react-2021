@@ -4,19 +4,31 @@
       "id": 1,
       "name": "Doctor Appoitment",
       "day": "Feb 5th at 2:30pm",
-      "remider": true
+      "remnider": true
     },
     {
       "id": 2,
       "name": "Meeting at school",
       "day": "Feb 5th at 1:30pm",
-      "remider": true
+      "remnider": true
     },
     {
       "id": 4,
       "name": "Go to PIO to fix some things",
       "day": "Mar 16th at 5:30pm",
-      "remider": true
+      "remnider": true
+    },
+    {
+      "name": "test",
+      "day": "test",
+      "reminder": true,
+      "id": 5
+    },
+    {
+      "name": "test",
+      "day": "test",
+      "reminder": true,
+      "id": 6
     }
   ]
 }

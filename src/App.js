@@ -28,22 +28,34 @@ const App = () => {
   };
 
   // Create a task
-  const taskCreate = (task) => {
+  const taskCreate = async (task) => {
+    const response = await fetch(`http://localhost:5000/tasks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+
+    const data = await response.json();
+
+    setTasks([...tasks, data]);
+
     // const ids = tasks.map((task) => task.id);
     // let id = ids.reduce((a, b) => Math.max(a, b)); // works only if the array is not empty
     // console.log(id);
     // if (id === 0) {
     //   id = 1;
     // }
-    const id = Math.random() * 1000 + 1;
-    const newTask = { ...task, id: id + 1 };
-    setTasks([...tasks, newTask]);
+    // const id = Math.random() * 1000 + 1;
+    // const newTask = { ...task, id: id + 1 };
+    // setTasks([...tasks, newTask]);
   };
 
   const deleteTask = async (id) => {
     await fetch(`http://localhost:5000/tasks/${id}`, {
-      method: 'DELETE'
-    })
+      method: "DELETE",
+    });
 
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -53,7 +65,7 @@ const App = () => {
     console.log(id);
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, remider: !task.remider } : task
+        task.id === id ? { ...task, remnider: !task.remnider } : task
       )
     );
   };
