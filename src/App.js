@@ -7,6 +7,8 @@ import TaskCreate from "./components/tasks/TaskCreate";
 
 // Function component
 const App = () => {
+  const URL = 'http://localhost:5000/tasks'
+
   const [tasks, setTasks] = useState([]);
 
   const [showForm, setShowForm] = useState(false);
@@ -22,14 +24,14 @@ const App = () => {
 
   // Fetch tasks
   const fetchTasks = async () => {
-    const response = await fetch("http://localhost:5000/tasks");
+    const response = await fetch(`${URL}`);
     const data = await response.json();
     return data;
   };
 
   // Create a task
   const taskCreate = async (task) => {
-    const response = await fetch(`http://localhost:5000/tasks`, {
+    const response = await fetch(`${URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +55,7 @@ const App = () => {
   };
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`${URL}/${id}`, {
       method: "DELETE",
     });
 
