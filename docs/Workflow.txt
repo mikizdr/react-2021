@@ -1,0 +1,14 @@
+# Deploymnet
+
+## install the package for the app deployment
+yarn global add serve
+
+or
+
+npm i -g serve 
+
+yarn build
+
+serve -s build -p 5000 [port number]
+
+... and the app is in production mode.
